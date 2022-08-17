@@ -3,7 +3,7 @@
 @section('forms')
     <div class="row">
         <div class="col-12 my-2 py-4 container">
-            <form class="needs-validation" id="search">
+            <form action="{{ route('consultores') }}" class="needs-validation" id="search">
 
                 <div class="row mb-3">
                     <div class="col-12">
