@@ -123,6 +123,8 @@ class CaoClienteController extends Controller
         int $ano_fim) {
 
         $receitasLiquidas = array();
+        $data_inicio = $ano_inicio ."-" .$mes_inicio ."-" ."01";
+        $data_fim = $ano_fim ."-" .$mes_fim ."-" ."31";
 
         foreach ($clientes as $cliente) {
             # code...
@@ -145,21 +147,13 @@ class CaoClienteController extends Controller
                 AND
                     cao_cliente.no_fantasia = :nome_cliente
                 AND
-                    MONTH(cao_fatura.data_emissao) >= :mes_inicio
-                AND
-                    MONTH(cao_fatura.data_emissao) <= :mes_fim
-                AND
-                    YEAR(cao_fatura.data_emissao) >= :ano_inicio
-                AND
-                    YEAR(cao_fatura.data_emissao) <= :ano_fim
+                    cao_fatura.data_emissao BETWEEN :data_inicio AND :data_fim
                 GROUP BY cliente, mes_emissao, ano_emissao
                 ORDER BY mes_emissao
                 ", [
                     'nome_cliente' => $cliente,
-                    'mes_inicio' => $mes_inicio,
-                    'ano_inicio' => $ano_inicio,
-                    'mes_fim' => $mes_fim,
-                    'ano_fim' => $ano_fim
+                    'data_inicio' => $data_inicio,
+                    'data_fim' => $data_fim
                 ]);
 
                 array_push($receitasLiquidas, $receitaLiquida);
