@@ -1,7 +1,7 @@
 
 (function ($) {
 
-    $('form#search').attr('action', 'perfomance/consultores');
+    //$('form#search').attr('action', 'perfomance/consultores');
 
     $('.select-picker').select2({
         'placeholder': 'Seleccione uma opção',
