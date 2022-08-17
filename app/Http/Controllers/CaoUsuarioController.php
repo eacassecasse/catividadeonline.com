@@ -168,8 +168,8 @@ class CaoUsuarioController extends Controller
     {
 
         $comissoes = array();
-        $data_inicio = $ano_inicio ."-" .$mes_inicio ."-" .01;
-        $data_fim = $ano_fim ."-" .$mes_fim ."-" .31;
+        $data_inicio = $ano_inicio ."-" .$mes_inicio ."-" ."01";
+        $data_fim = $ano_fim ."-" .$mes_fim ."-" . "31";
         
         foreach ($consultores as $consultor) {
             # code...
@@ -200,9 +200,7 @@ class CaoUsuarioController extends Controller
                 AND
                     cao_usuario.no_usuario = :nome_consultor
                 AND
-                    cao_fatura.data_emissao BETWEEN :data_inicio 
-                AND
-                    :data_fim
+                    cao_fatura.data_emissao BETWEEN :data_inicio AND :data_fim
                 GROUP BY consultor, mes_emissao, ano_emissao
                 ORDER BY mes_emissao) faturacao
             GROUP BY consultor, receita_liquida, comissao, mes_emissao,  ano_emissao
